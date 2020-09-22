@@ -147,5 +147,6 @@ def render_booking_done():
         return render_template('booking_done.html', name=flask.request.form.get('clientName'),time=time, phone=flask.request.form.get('clientPhone'))
     else:
         print("Error- request not save.")
-app.run(debug=True)
-
+# app.run(debug=True)
+if __name__ == '__main__':
+    app.run()
