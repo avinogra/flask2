@@ -57,28 +57,31 @@
 
               <h6 class="mt-4">Вторник</h6>
               {% for timing, activity in teacher['free']['tue'].items() %}
-              {% if activity %}   
-              <a href="#" class="btn btn-outline-success mr-2">{{timing}} свободно</a>
+              {% if activity %} 
+              <a href="/booking/{{teacher.id}}/tue/{{timing|replace(":", "")}}/" class="btn btn-outline-success mr-2">{{timing}} свободно</a>  
               {% endif %}
               {% endfor %}
 
               <h6 class="mt-4">Среда</h6>
               {% for timing, activity in teacher['free']['wed'].items() %}
-              {% if activity %}   
-              <a href="#" class="btn btn-outline-success mr-2">{{timing}} свободно</a>
+              {% if activity %} 
+              <a href="/booking/{{teacher.id}}/wed/{{timing|replace(":", "")}}/" class="btn btn-outline-success mr-2">{{timing}} свободно</a>   
               {% endif %}
               {% endfor %}
 
-
               <h6 class="mt-4">Четверг</h6>
-
-              <p>Нет свободных уроков</p>
+              {% for timing, activity in teacher['free']['thu'].items() %}
+              {% if activity %} 
+              <a href="/booking/{{teacher.id}}/thu/{{timing|replace(":", "")}}/" class="btn btn-outline-success mr-2">{{timing}} свободно</a>   
+              {% endif %}
+              {% endfor %}
 
               <h6 class="mt-4">Пятница</h6>
-              <a href="#" class="btn btn-outline-success  mr-2">14:00 свободно</a>
-              <a href="#" class="btn btn-outline-success  mr-2">16:00 свободно</a>
-              <a href="#" class="btn btn-outline-success  mr-2">18:00 свободно</a>
-
+              {% for timing, activity in teacher['free']['fri'].items() %}
+              {% if activity %} 
+              <a href="/booking/{{teacher.id}}/fri/{{timing|replace(":", "")}}/" class="btn btn-outline-success mr-2">{{timing}} свободно</a>   
+              {% endif %}
+              {% endfor %}
             </section>
 
           </div>
