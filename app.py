@@ -5,6 +5,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField, RadioField
 from flask_wtf.csrf import CSRFProtect
 from wtforms.validators import DataRequired, email_validator,Required
+import random
 
 app = Flask(__name__)
 
@@ -56,6 +57,10 @@ with open("data.json", "r",encoding='utf-8') as f:
 goals=check_new_goals(teachers,goals_)
 
 
+
+
+
+
 class RequestForm(FlaskForm):
     time_list=[ (key,value) for key,value in times.items()]
     choices_list= [(key,value)  for key,value in goals.items()]
@@ -77,8 +82,12 @@ class RequestBooking(FlaskForm):
 
 @app.route('/')
 def main():
-    # print(goals)
-    return render_template('index.html',teachers=teachers, goals=goals)
+    r=[]
+    while len(r)<6: 
+        n=random.randint(0, 11) 
+        if n not in r :
+            r.append(n)
+    return render_template('index.html',teachers=teachers, goals=goals,ran=r)
 
 
 @app.route('/request/')
@@ -112,7 +121,7 @@ def render_goal(id):
         if goal in t['goals']:
             s.append(t)
     newlist = sorted(s, key=lambda k: k['rating'],reverse=True) 
-    return render_template('goal.html',teachers=newlist)
+    return render_template('goal.html',teachers=newlist,goal=goals[id])
 
  
 @app.route('/profile/<int:id>/')
